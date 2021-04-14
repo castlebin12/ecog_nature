@@ -1,0 +1,31 @@
+MachineLearning:
+    Model:
+        LGBM
+        ADA
+        Linear
+        Lasso
+        XGBoost
+        RandomForest
+        Polinomial
+
+DeepLearning:
+    Model:
+        LstmEncoder:
+            TIME
+            STFT
+        CNN:
+            Wavelet
+            STFT
+            FFT
+
+Feature:
+    RMS
+    peak
+    bottom
+
+ProProcessing:
+    Smoothing
+    Scaler
+    Sampling
+
+EAD:
