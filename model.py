@@ -48,7 +48,7 @@ class LSTM(nn.Module):
 
 class CNN_GRU(nn.Module):
     def __init__(self,NFILT=256,NOUT=4):
-        super(NN,self).__init__()
+        super(CNN_GRU, self).__init__()
         self.conv0 = nn.Conv2d(1,NFILT,kernel_size=(200,3),padding=(0,1),bias=False)
         self.bn0 = nn.BatchNorm2d(NFILT)
         self.gru = nn.GRU(input_size=NFILT,hidden_size=128,num_layers=1,batch_first=True,bidirectional=False)

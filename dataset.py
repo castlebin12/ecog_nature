@@ -12,30 +12,30 @@ class Dataset(Dataset):
         self.path = path
         if self.path[-1] != '/':
             self.path += '/'        
-        self.df = pd.read_csv(self.path + 'segment.csv')
+        self.df = pd.read_csv(self.path + 'segments.csv')
         self.NFFF = 200
 
     def __len__(self):
         return len(self.df)
 
     def __getitem__(self, idx):
-        sid = self.df.iloc[item]['segment_id']
-        target = self.df.iloc[item]['category_id']
+        sid = self.df.iloc[idx]['segment_id']
+        target = self.df.iloc[idx]['category_id']
         data = sio.loadmat(self.path+'{}'.format(sid))['data']
         _,_, data = signal.spectrogram(data[0,:],fs=5000,nperseg=256,noverlap=128,nfft=1024)
 
         data = data[:self.NFFF,:]
         data = stats.zscore(data,axis=1)
         data = np.expand_dims(data,axis=0)
-        return data,targe   
+        return data,target
         
     def split_reviewer(self, reviewer_id):
         train = copy.deepcopy(self)
-        valid = copy.deepcopye(self)
+        valid = copy.deepcopy(self)
 
         idx = self.df['reviewer_id']!=reviewer_id
 
-        train.df = traini.df[idx].reset_index(drop=True)
-        test.df = valid.df[np.logical_not(idx)].reset_index(drop=True)
+        train.df = train.df[idx].reset_index(drop=True)
+        valid.df = valid.df[np.logical_not(idx)].reset_index(drop=True)
         return train, valid
 

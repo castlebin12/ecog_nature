@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 # create training and validation dataset
 # split_reviewer(reviewer_id) function split dataset by reviewers
 # results should be evaluated for all reviewers i.e. 1,2,3
-dataset_fnusa_train,dataset_fnusa_valid = Dataset('./DATASET_FNUSA/').split_reviewer(1)
+dataset_fnusa_train,dataset_fnusa_valid = Dataset('../DATASET_FNUSA/').split_reviewer(1)
 
 NWORKERS = 24
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -55,7 +55,8 @@ if __name__ == "__main__":
                 print('EPOCH:{}\tITER:{}\tLOSS:{}'.format(str(epoch).zfill(2),
                                                           str(i).zfill(5),
                                                           J.data.cpu().numpy()))
-
+                print(y.shape)
+                print(f'y : {y[:,-1,:]}, target : {t}') 
         # evaluate results for validation test
         model.eval()
         for i,(x,t) in enumerate(VALID):
