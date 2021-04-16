@@ -27,5 +27,5 @@ ProProcessing:
     Smoothing
     Scaler
     Sampling
-
+    cut before 300ms
 EAD:
