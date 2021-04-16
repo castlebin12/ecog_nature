@@ -28,4 +28,11 @@ ProProcessing:
     Scaler
     Sampling
     cut before 300ms
+    wave kinds:
+        alpha
+        beta
+        gamma
+        theta
+        delta
+
 EAD:
